@@ -25,4 +25,4 @@ npm start
 
 # 5) Quick verification (in another shell)
 # Check server responds
-Invoke-WebRequest http://localhost:5015 -UseBasicParsing
+Invoke-WebRequest https://healthsaviour-backend.onrender.com -UseBasicParsing
