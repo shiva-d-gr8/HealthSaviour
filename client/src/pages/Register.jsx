@@ -83,11 +83,10 @@ function Register() {
       data.append("cloud_name", process.env.REACT_APP_CLOUDINARY_CLOUD_NAME);
 
       try {
-        const res = await fetch(process.env.REACT_APP_CLOUDINARY_BASE_URL, {
-          method: "POST",
-          body: data,
-        });
-        const uploadData = await res.json();
+        const { data: uploadData } = await axios.post(
+          process.env.REACT_APP_CLOUDINARY_BASE_URL,
+          data
+        );
         setFile(uploadData.url.toString());
         toast.success("Profile picture uploaded successfully");
       } catch (err) {
@@ -128,6 +127,7 @@ function Register() {
     const { firstname, lastname, email, password } = formDetails;
 
     try {
+      console.log(process.env.REACT_APP_SERVER_DOMAIN);
       await toast.promise(
         axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/user/register`, {
           firstname,
