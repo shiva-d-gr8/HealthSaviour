@@ -77,17 +77,22 @@ function Register() {
       element.type === "image/png" ||
       element.type === "image/jpg"
     ) {
+      const cloudinaryUrl = process.env.REACT_APP_CLOUDINARY_BASE_URL;
+      if (!cloudinaryUrl) {
+        setLoading(false);
+        toast.error("Cloudinary upload URL is not configured.");
+        return;
+      }
+
       const data = new FormData();
       data.append("file", element);
       data.append("upload_preset", process.env.REACT_APP_CLOUDINARY_PRESET);
       data.append("cloud_name", process.env.REACT_APP_CLOUDINARY_CLOUD_NAME);
 
       try {
-        const { data: uploadData } = await axios.post(
-          process.env.REACT_APP_CLOUDINARY_BASE_URL,
-          data
-        );
-        setFile(uploadData.url.toString());
+        const { data: uploadData } = await axios.post(cloudinaryUrl, data);
+        const imageUrl = uploadData.secure_url || uploadData.url;
+        setFile(imageUrl.toString());
         toast.success("Profile picture uploaded successfully");
       } catch (err) {
         toast.error("Failed to upload image");
