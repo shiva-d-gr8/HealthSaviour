@@ -11,7 +11,7 @@ const Hero = () => {
           Our Responsibility
         </h1>
         <p>
-          Your Health, Our Priority
+          Your Health, Our Priority-
 Book appointments with trusted doctors anytime, anywhere — fast, secure, and hassle-free. Manage consultations, explore specialist doctors, and schedule visits effortlessly through a modern and reliable healthcare platform designed for convenience and care.
 
         </p>
