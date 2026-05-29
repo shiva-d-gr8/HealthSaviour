@@ -82,7 +82,11 @@ function Login() {
       const { email, password, role } = formDetails;
 
       const { data } = await toast.promise(
-        axios.post("/user/login", { email, password, role }),
+        axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/user/login`, {
+          email,
+          password,
+          role,
+        }),
         {
           loading: "Logging in...",
           success: "Login successful!",
